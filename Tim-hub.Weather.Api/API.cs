@@ -5,11 +5,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Net.Http;
 using Newtonsoft.Json;
+using System.Drawing;
 
 namespace Tim_hub.Weather
 {
     public static class API
     {
+        public static Bitmap DownloadIcon(string iconId)
+        {
+            return new Bitmap(new HttpClient().GetAsync($"http://openweathermap.org/img/wn/{iconId}@4x.png").Result.Content.ReadAsStreamAsync().Result);
+        }
+
         public static string key;
 
         public class Weather
